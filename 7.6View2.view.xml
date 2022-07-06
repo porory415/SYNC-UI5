@@ -1,0 +1,74 @@
+<mvc:View controllerName="sap.sync.ui5training.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"  xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox>
+                <Button text="다음화면" press="onNavToView2"/>
+            </VBox>
+        
+           <VBox>
+                <ui:Table
+                    id="uiTable"
+                    rows="{/students}"
+                    selectionMode="Single"
+                    visibleRowCount="7"
+                    ariaLabelledBy="title">
+                    <ui:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title id="title" text="성적표"/>
+                            <Button text="조회" press="onCheck"/>
+                            <ToolbarSeparator/>
+                            <ToolbarSpacer/>
+                            <Button icon= "{= ${pass} ? 'sap-icon://arrow-bottom' : 'sap-icon://arrow-top'}"/>
+                            <!-- <Input id="scoreStart" width="5rem" placeholder="최소점수"/>
+                            <Input id="scoreEnd" width="5rem" placeholder="최대점수"/> -->
+                            <Button text="추가" press="onRegistPopup"/>
+                            <Input id="searchInput" width="20rem"/>
+                            <Button text="검색" press="onSearch"/>
+                            <Button text="삭제" press="onDelete"/>
+                        </OverflowToolbar>
+                    </ui:extension>
+                    <ui:columns>
+                        <ui:Column width="11rem">
+                            <Label text="이름" />
+                            <ui:template>
+                                <Text text="{name}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="11rem">
+                            <Label text="국어" />
+                            <ui:template>
+                                <Text text="{score}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column width="11rem">
+                            <Label text="수학" />
+                            <ui:template>
+                                <Text text="{score2}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+
+                        <ui:Column width="11rem">
+                            <Label text="주소" />
+                            <ui:template>
+                                <Text text="{address}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+
+                    </ui:columns>
+
+                     <ui:Column width="11rem">
+                            <Label text="합/불" />
+                            <ui:template>
+                                <Text text="{result}" wrapping="false" />
+                            </ui:template>
+                    </ui:Column>
+            
+                </ui:Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
