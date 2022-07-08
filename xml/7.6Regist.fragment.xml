@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+   <Dialog
+      id="helloDialog"
+      title="Hello">
+      <beginButton>
+        <Button text="닫기" press="onCloseDialog" />
+      </beginButton>
+      
+                    <HBox>
+                        <VBox class="sapUiTinyMargin">
+                            <Label text="이름"/>
+                            <Input id="nameInput" value="" />
+                        </VBox>
+                        <VBox class="sapUiTinyMargin">
+                            <Label text="국어"/>
+                            <!-- <Input id="score1Input" value="{/score1Input}" /> -->
+                            <!-- <Select
+                                forceSelection="false"
+                                selectedKey="{/score1Input}"        
+                                items="{
+                                    path: '/students',
+						            sorter: { path: 'score1'  }
+                                }">
+                                <core:Item key="{students}" text="{score1}" />
+                            </Select> -->
+                            <Select
+                                forceSelection="false"
+                                selectedKey="{/score1Input}"        
+                                items="{
+                                    path: '/grade'
+                                }">
+                                <!-- // selectedKey = 내가 선택한 값으로 변경됨. 프레임워크 설계상. 목록에서 선택했을때 키 값이 들어감 -->
+                                <core:Item key="{key}" text="{key}" />
+                            </Select>
+                        </VBox>
+                        <VBox class="sapUiTinyMargin">
+                            <Label text="수학"/>
+                            <!-- <Input id="score2Input" value="{/score2Input}" /> -->
+                            <Select
+                                forceSelection="false"
+                                selectedKey="{/score2Input}"        
+                                items="{
+                                    path: '/grade'
+                                }">
+                                <core:Item key="{key}" text="{key}" />
+                            </Select>
+                        </VBox>
+                        <VBox class="sapUiTinyMargin">
+                            <Label text="주소" />
+                            <Input valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onPopupAddress"/>      
+                            <!-- valueHelp 로만 값을 받도록 함. -->
+                        </VBox>
+                        <VBox class="sapUiTinyMargin">
+                            <Label text="" />
+                            <Button text="등록" press="onRegist" />
+                        </VBox>
+                    </HBox>
+   </Dialog>
+</core:FragmentDefinition>
