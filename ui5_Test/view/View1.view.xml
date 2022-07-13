@@ -1,0 +1,63 @@
+<mvc:View controllerName="sap.sync.ui5test.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Page id="page" title="JavaScript 활용 1">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Title text="Ex01" level="H1" class="sapUiTinyMargin"/>
+                <VBox>
+                    <HBox>
+                        <VBox height="4rem" justifyContent="End" class="sapUiTinyMargin">
+                            <Label text="첫번째 숫자" />
+                            <!-- <Input id="input1" value="{ViewOneModel>/q1property}" required="true"/> -->
+                            <!-- 바인딩에 포맷타입을 부여하면, Input에 해당 타입의 입력만 받도록 제한 할 수 있고,
+                                모델의 프로퍼티를 읽으면 타입 또한 그대로 유지되어 oInput.getValue() 로 string 타입으로만 읽을 수 있던
+                                문제를 쉽게 해결할 수 있습니다.
+                                https://ui5.sap.com/#/topic/07e4b920f5734fd78fdaa236f26236d8
+                                https://ui5.sap.com/#/topic/91f2f2866f4d1014b6dd926db0e91070
+                            -->
+                            <Input
+                                id="input1"
+                                value="{ path: 'ViewOneModel>/q1property',
+                                        type: 'sap.ui.model.type.Integer',
+                                        formatOptions: {
+                                            minIntegerDigits: 1
+                                        },
+                                        constraints: {
+                                            minimum: 0,
+                                            maximum: 100
+                                        }
+                                    }" />
+                        </VBox>
+                        <VBox height="4rem" justifyContent="End" class="sapUiTinyMargin">
+                            <Label text="기능" />
+                             <!-- 1. selectKey 프로퍼티 바인딩 값 읽기-->
+                             <!-- 2. id=select1 객체에 메소드 호출해서 값 받아오기-->
+                            <Select
+                                id="select1"
+                                change="onSelect" 
+                                selectedKey="{ViewOneModel>/selectedKey}"
+                                items="{
+                                    path: 'ViewOneModel>/operator',
+                                    sorter: { path: 'Name' }
+                                }">
+                                <core:Item key="{ViewOneModel>keyValue}" text="{ViewOneModel>textValue}" />
+                            </Select>
+                        </VBox>
+                        <VBox height="4rem" justifyContent="End" class="sapUiTinyMargin">
+                            <Label text="두번째 숫자" />
+                            <Input id="input2" value="{path: 'ViewOneModel>/q2property'}" liveChange="onLiveChange" valueLiveUpdate="true"/>
+                        </VBox>
+                        <VBox height="4rem" justifyContent="End" class="sapUiTinyMargin">
+                            <Button text="계산" press="onCalc"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+                <VBox>
+                    <Title text="결과" level="H2" class="sapUiTinyMargin"/>
+                    <Text text="{ViewOneModel>/a1property}" class="sapUiTinyMargin"/>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

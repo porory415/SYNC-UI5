@@ -1,0 +1,58 @@
+<mvc:View controllerName="sap.sync.ui5test.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="UI 제어">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Title text="Ex04" level="H1" class="sapUiTinyMargin"/>
+                <HBox>
+                    <Button text="검사 시작" press="onPressStart" type="{= ${ViewThreeModel>/bQ1Visible} ? 'Default' : 'Emphasized' }"/>
+                </HBox>
+                <HBox visible="{ViewThreeModel>/bQ1Visible}" class="sapUiSmallMarginTop">
+                <!-- 질문을 박스단위로 구성하여 최상단 박스를 초기에 안보이도록 하고 직전 질문에 선택이 이루어지면, 모델의 프로퍼티 값을 바꾸어 보여지도록 처리 -->
+                    <VBox>
+                        <Label text="문항1" />
+                        <Text text="{ViewThreeModel>/Questions/0/Q}" />
+                        <RadioButtonGroup id="groupA" selectedIndex="{ViewThreeModel>/Questions/0/Answer}" select="onSelected($event, '1')" editable="false">
+<!-- groupName 을 지정하지 않으면 화면에 있는 모든 라디오버튼은 단일 그룹으로 인식되어 모든 버튼중에 한개만 선택가능해짐, 그룹 단위로 나누려면 이 버튼이 속한 라디오그룹을 속성값으로 줘야함-->
+                            <RadioButton text="{ViewThreeModel>/Questions/0/Text1}" groupName="groupA"/>
+                            <RadioButton text="{ViewThreeModel>/Questions/0/Text2}" groupName="groupA"/>
+                        </RadioButtonGroup>
+                    </VBox>
+                </HBox>
+                <HBox visible="{ViewThreeModel>/bQ2Visible}" class="sapUiSmallMarginTop"> <!-- 주의: 문항2는 미완성코드 -->
+                    <VBox>
+                        <Label text="문항2" />
+                        <Text text="{ViewThreeModel>/Questions/1/Q}" />
+                        <RadioButtonGroup id="groupB" selectedIndex="{ViewThreeModel>/Questions/1/Answer}" select="onSelected($event, '2')" editable="false">
+                            <RadioButton text="{ViewThreeModel>/Questions/1/Text1}" groupName="groupB"/>
+                            <RadioButton text="{ViewThreeModel>/Questions/1/Text2}" groupName="groupB"/>
+                        </RadioButtonGroup>
+                    </VBox>
+                </HBox>
+                <HBox visible="{ViewThreeModel>/bQ3Visible}" class="sapUiSmallMarginTop"> <!-- 주의: 문항2는 미완성코드 -->
+                    <VBox>
+                        <Label text="문항3" />
+                        <Text text="{ViewThreeModel>/Questions/2/Q}" />
+                        <RadioButtonGroup id="groupC" selectedIndex="{ViewThreeModel>/Questions/2/Answer}" select="onSelected($event, '3')" editable="false">
+                            <RadioButton text="{ViewThreeModel>/Questions/2/Text1}" groupName="groupC"/>
+                            <RadioButton text="{ViewThreeModel>/Questions/2/Text2}" groupName="groupC"/>
+                        </RadioButtonGroup>
+                    </VBox>
+                </HBox>
+                <HBox visible="{ViewThreeModel>/bQ4Visible}" class="sapUiSmallMarginTop"> <!-- 주의: 문항2는 미완성코드 -->
+                    <VBox>
+                        <Label text="문항4" />
+                        <Text text="{ViewThreeModel>/Questions/3/Q}" />
+                        <RadioButtonGroup id="groupD" selectedIndex="{ViewThreeModel>/Questions/3/Answer}" select="onSelected($event, '4')" editable="false">
+                            <RadioButton text="{ViewThreeModel>/Questions/3/Text1}" groupName="groupD"/>
+                            <RadioButton text="{ViewThreeModel>/Questions/3/Text2}" groupName="groupD"/>
+                        </RadioButtonGroup>
+                        <Button text="결과 확인" press="onResult" enabled="false" id="buttonResult"/>
+                    </VBox>
+                </HBox>
+                <!-- 문항3,4 도 같은 방식으로 구현 -->
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
